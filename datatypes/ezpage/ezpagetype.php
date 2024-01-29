@@ -781,12 +781,9 @@ class eZPageType extends eZDataType
                                                                             'value' => $contentObjectAttribute->attribute( 'id' ) ),
                                            'from_page' => $redirectionURI,
                                            'cancel_page' => $redirectionURI,
-                                           'persistent_data' => array( 'HasObjectInput' => 0 ) );
-
-                if( $blockINI->hasVariable( $block->attribute( 'type' ), 'ManualBlockStartBrowseNode' ) )
-                {
-                    $browseParameters['start_node'] = $blockINI->variable( $block->attribute( 'type' ), 'ManualBlockStartBrowseNode' );
-                }
+                                           'persistent_data' => array( 'HasObjectInput' => 0 ),
+                                           'start_node' => $this->getBrowseStartNodeId( $http, $blockINI, $contentObjectAttribute, $block, $params ),
+                );
 
                 eZContentBrowse::browse( $browseParameters, $module );
                 break;
@@ -890,6 +887,7 @@ class eZPageType extends eZDataType
                 $page = $contentObjectAttribute->content();
                 $zone = $page->getZone( $params[1] );
                 $block = $zone->getBlock( $params[2] );
+                $customAttributeIdentifier = $params[3];
                 $blockINI = eZINI::instance( 'block.ini' );
 
                 $browseParameters = array( 'action_name' => 'CustomAttributeBrowse',
@@ -902,11 +900,14 @@ class eZPageType extends eZDataType
                 if( $blockINI->hasVariable( $block->attribute( 'type' ), 'CustomAttributeStartBrowseNode' ) )
                 {
                     $customAttributeStartBrowseNode = $blockINI->variable( $block->attribute( 'type' ), 'CustomAttributeStartBrowseNode' );
-                    $customAttributeIdentifier = $params[3];
                     if( isset( $customAttributeStartBrowseNode[$customAttributeIdentifier] ) )
                     {
                         $browseParameters['start_node'] = $customAttributeStartBrowseNode[$customAttributeIdentifier];
                     }
+                }
+                if( $blockINI->hasVariable( $block->attribute( 'type' ), 'CustomAttributeAllowedClasses_' . $customAttributeIdentifier ) )
+                {
+                    $browseParameters['class_array'] = $blockINI->variable( $block->attribute( 'type' ), 'CustomAttributeAllowedClasses_' . $customAttributeIdentifier );
                 }
 
                 eZContentBrowse::browse( $browseParameters, $module );
@@ -1242,6 +1243,32 @@ class eZPageType extends eZDataType
         $rootNode = $attributeNode->childNodes->item( 0 );
         $xmlString = $rootNode ? $rootNode->ownerDocument->saveXML( $rootNode ) : '';
         $objectAttribute->setAttribute( 'data_text', $xmlString );
+    }
+
+    /**
+     * @param eZHTTPTool $http
+     * @param eZINI $blockIni
+     * @param eZContentObjectAttribute $contentObjectAttribute
+     * @param eZPageBlock $block
+     * @param array $params
+     * @return int|null
+     */
+    protected function getBrowseStartNodeId( $http, $blockIni, $contentObjectAttribute, $block, $params )
+    {
+        $return = null;
+
+        if( $http->hasVariable( 'start-browse-node-id' ) )
+        {
+            $startBrowseNodeIds = $http->variable( 'start-browse-node-id' );
+            $return = $startBrowseNodeIds[ $contentObjectAttribute->attribute( 'id' ) ][ $params[1] ][ $params[2] ];
+        }
+
+        if( !$return && $blockIni->hasVariable( $block->attribute( 'type' ), 'ManualBlockStartBrowseNode' ) )
+        {
+            $return = $blockIni->variable( $block->attribute( 'type' ), 'ManualBlockStartBrowseNode' );
+        }
+
+        return $return;
     }
 }
 

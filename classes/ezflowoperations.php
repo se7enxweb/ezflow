@@ -73,6 +73,7 @@ class eZFlowOperations
         $fetchClassOptions->iniFile = 'block.ini';
         $fetchClassOptions->iniSection = $block['block_type'];
         $fetchClassOptions->iniVariable = 'FetchClass';
+        $fetchClassOptions->handlerParams = array( new eZFlowFetchParameters( $block ) );
 
         $fetchInstance = eZExtension::getHandlerClass( $fetchClassOptions );
 
@@ -145,11 +146,9 @@ class eZFlowOperations
             $loggedInUser = eZUser::currentUser();
             $anonymousUserId = eZUser::anonymousId();
             $anonymousUser = eZUser::fetch( $anonymousUserId );
-            eZUser::setCurrentlyLoggedInUser( $anonymousUser, $anonymousUserId );
+            eZUser::setCurrentlyLoggedInUser( $anonymousUser, $anonymousUserId, eZUser::NO_SESSION_REGENERATE );
             unset( $anonymousUser, $anonymousUserId );
         }
-
-        include_once( 'kernel/classes/ezcontentcache.php' );
 
         $ini = eZINI::instance( 'block.ini' );
         $db = eZDB::instance();
@@ -506,7 +505,7 @@ class eZFlowOperations
         // log the previously logged in user if it was changed to anonymous earlier
         if ( isset( $loggedInUser ) )
         {
-            eZUser::setCurrentlyLoggedInUser( $loggedInUser, $loggedInUser->attribute( 'contentobject_id' ) );
+            eZUser::setCurrentlyLoggedInUser( $loggedInUser, $loggedInUser->attribute( 'contentobject_id' ), eZUser::NO_SESSION_REGENERATE );
         }
     }
 

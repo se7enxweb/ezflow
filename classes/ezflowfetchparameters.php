@@ -24,28 +24,13 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-$module = $Params["Module"];
-$contentObjectAttributeID = $Params['ContentObjectAttributeID'];
-$version = $Params['Version'];
-$zoneID = $Params['ZoneID'];
-
-$contentObjectAttribute = eZContentObjectAttribute::fetch( $contentObjectAttributeID, $version );
-if ( !$contentObjectAttribute )
+class eZFlowFetchParameters
 {
-    return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
+    /** @var array */
+    public $block;
+
+    public function __construct( array $block )
+    {
+        $this->block = $block;
+    }
 }
-
-$page = $contentObjectAttribute->content();
-$zone = $page->getZone( $zoneID );
-
-$tpl = eZTemplate::factory();
-
-$tpl->setVariable('zone_id', $zoneID );
-$tpl->setVariable('zone', $zone );
-$tpl->setVariable('attribute', $contentObjectAttribute );
-
-echo $tpl->fetch( 'design:page/zone.tpl' );
-
-eZExecution::cleanExit();
-
-?>
