@@ -24,6 +24,26 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
+
+if ( !function_exists( 'createParamsFromStr' ) ) {
+function createParamsFromStr( $str )
+{
+    $params = array();
+
+    foreach( explode( '_', $str ) as $id )
+    {
+        $elem = explode( ':', $id );
+
+        $key = isset( $elem[0] ) ? $elem[0] : null;
+        $value = isset( $elem[1] ) ? $elem[1] : null;
+
+        $params[$key] = $value;
+    }
+
+    return $params;
+}
+}
+
 $http = eZHTTPTool::instance();
 
 if ( $http->hasPostVariable( 'ContentObjectAttributeID' ) )
@@ -125,21 +145,5 @@ $contentObjectAttribute->store();
 
 eZExecution::cleanExit();
 
-function createParamsFromStr( $str )
-{
-    $params = array();
-
-    foreach( explode( '_', $str ) as $id )
-    {
-        $elem = explode( ':', $id );
-
-        $key = isset( $elem[0] ) ? $elem[0] : null;
-        $value = isset( $elem[1] ) ? $elem[1] : null;
-
-        $params[$key] = $value;
-    }
-
-    return $params;
-}
 
 ?>

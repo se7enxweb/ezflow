@@ -24,8 +24,8 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-include_once( 'extension/ezflow/classes/ezflowpool.php' );
 
+if ( !class_exists( 'eZFlowFunctionCollection', false ) ) {
 class eZFlowFunctionCollection
 {
     function fetchWaiting( $blockID )
@@ -88,5 +88,9 @@ class eZFlowFunctionCollection
         return $result;
     }
 }
+}
+
+include_once( 'extension/ezflow/classes/ezflowpool.php' );
+
 
 ?>
