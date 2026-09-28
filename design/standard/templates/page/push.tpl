@@ -29,8 +29,8 @@
 </select>
 
 <input type="button" id="placement-button" name="PlacementButton" value="{'Add'|i18n('design/standard/page/push')}" /> 
-<br />
-<br />
+<br>
+<br>
 
 <h2>{'Placement list'|i18n('design/standard/page/push')}</h2>
 

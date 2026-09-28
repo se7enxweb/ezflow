@@ -37,8 +37,8 @@
 
 <div class="block date-range">
     <label>{'Date range'|i18n( 'design/admin/content/edit' )}</label>
-    <input name="SearchDate" type="radio" value="1" onclick="javascript:showDateRange(this);" /> {'Past day'|i18n( 'design/admin/content/edit' )} <input name="SearchDate" type="radio" value="2" onclick="javascript:showDateRange(this);" /> {'Past week'|i18n( 'design/admin/content/edit' )} <br />
-    <input name="SearchDate" type="radio" value="3" onclick="javascript:showDateRange(this);" /> {'Past month'|i18n( 'design/admin/content/edit' )} <input name="SearchDate" type="radio" value="4" onclick="javascript:showDateRange(this);" /> {'Past 3 months'|i18n( 'design/admin/content/edit' )} <br />
+    <input name="SearchDate" type="radio" value="1" onclick="javascript:showDateRange(this);" /> {'Past day'|i18n( 'design/admin/content/edit' )} <input name="SearchDate" type="radio" value="2" onclick="javascript:showDateRange(this);" /> {'Past week'|i18n( 'design/admin/content/edit' )} <br>
+    <input name="SearchDate" type="radio" value="3" onclick="javascript:showDateRange(this);" /> {'Past month'|i18n( 'design/admin/content/edit' )} <input name="SearchDate" type="radio" value="4" onclick="javascript:showDateRange(this);" /> {'Past 3 months'|i18n( 'design/admin/content/edit' )} <br>
     <input name="SearchDate" type="radio" value="5" onclick="javascript:showDateRange(this);" /> {'Past year'|i18n( 'design/admin/content/edit' )}
 </div>
 
