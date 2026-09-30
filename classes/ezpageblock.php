@@ -375,9 +375,9 @@ class eZPageBlock
 
         $xmlDocs = $db->arrayQuery(
             "SELECT oa.data_text " .
-            "FROM ezcontentobject_tree AS t " .
-            "INNER JOIN ezcontentobject AS o ON t.contentobject_id = o.id " .
-            "INNER JOIN ezcontentobject_attribute AS oa ON o.id = oa.contentobject_id AND o.current_version = oa.version " .
+            "FROM ezcontentobject_tree t " .
+            "INNER JOIN ezcontentobject o ON t.contentobject_id = o.id " .
+            "INNER JOIN ezcontentobject_attribute oa ON o.id = oa.contentobject_id AND o.current_version = oa.version " .
             "WHERE t.node_id = " . $row[0]["node_id"] . " AND data_type_string = '" . eZPageType::DATA_TYPE_STRING . "'"
         );
 
