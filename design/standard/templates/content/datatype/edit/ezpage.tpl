@@ -34,7 +34,7 @@
         {set $zone_names = ezini( $zone_layout, 'ZoneName', 'zone.ini' )}
     {/if}
 
-<div id="page-datatype-container" class="yui-skin-sam yui-skin-ezflow">
+<div id="page-datatype-container" class="ezpage-tabs-skin">
 {if and( $can_change_layout, $layout_for_current_class )}
 <div class="zones float-break">
 {foreach $allowed_zones as $allowed_zone}
@@ -65,112 +65,114 @@
 <div id="zone-tabs-container"></div>
 </div>
 
-{ezscript_require( array( 'ezjsc::yui2', 'ezjsc::yui3', 'ezjsc::yui3io' ) )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezflowcalendar.js', 'blocktools.js', 'zonetools.js', 'scheduledialog.js' ) )}
+{ezcss_require( array( 'ezflowwidgets.css', 'scheduledialog.css', 'ezpage/ezpage.css' ) )}
 
 <script type="text/javascript">
-(function() {ldelim}
-    var loader = new YAHOO.util.YUILoader(YUI2_config);
+jQuery(function( $ ) {ldelim}
+    eZFlow.ZoneLayout.cfg = {ldelim} 'allowedzones': '{$allowed_zones|json()}',
+                                     'zonelayout': '{$zone_layout}' {rdelim};
+    eZFlow.ZoneLayout.init();
 
-    loader.onSuccess = function() {ldelim}
-        YAHOO.ez.ZoneLayout.cfg = {ldelim} 'allowedzones': '{$allowed_zones|json()}',
-                                           'zonelayout': '{$zone_layout}' {rdelim};
-        YAHOO.ez.ZoneLayout.init();
+    var tabs = [];
 
-        var tabView = new YAHOO.widget.TabView();
+    {foreach $attribute.content.zones as $index => $zone}
+        {if and( is_set( $zone.action ), eq( $zone.action, 'remove' ) )}
+            {skip}
+        {/if}
+        tabs.push( {ldelim}
+            label: '{$zone_names[$zone.zone_identifier]}',
+            dataSrc: '{concat( '/ezflow/zone/', $attribute.id, '/', $attribute.version, '/', $index  )|ezurl(no)}',
+            dataLoaded: false
+            {rdelim} );
+    {/foreach}
 
-        {foreach $attribute.content.zones as $index => $zone}
-            {if and( is_set( $zone.action ), eq( $zone.action, 'remove' ) )}
-                {skip}
-            {/if}
-            tabView.addTab( new YAHOO.widget.Tab({ldelim}
-                label: '{$zone_names[$zone.zone_identifier]}',
-                dataSrc: '{concat( '/ezflow/zone/', $attribute.id, '/', $attribute.version, '/', $index  )|ezurl(no)}',
-                cacheData: true
-                {rdelim}));
-        {/foreach}
+    var blockCfg = {ldelim}
+        url: "{'ezflow/request'|ezurl('no')}",
+        attributeid: {$attribute.id},
+        version: {$attribute.version}
+    {rdelim};
 
-        {literal}
-        var activeTabIndex = YAHOO.util.Cookie.get( 'eZPageActiveTabIndex' );
+    {literal}
+    // Zone tab view: one tab per zone, its content loaded once from the ezflow/zone view
+    var navset = $( '<div class="ezpage-tabs ezpage-tabs-top"><ul class="ezpage-tabs-nav"></ul><div class="ezpage-tabs-content"></div></div>' ),
+        nav = navset.children( '.ezpage-tabs-nav' ),
+        content = navset.children( '.ezpage-tabs-content' ),
+        activeIndex = -1;
 
-        if ( activeTabIndex ) {
-            if ( tabView.getTab( activeTabIndex ) ) {
-                tabView.set( 'activeIndex',  activeTabIndex );
-            }
-            else {
-                tabView.set( 'activeIndex', 0 );
-            }
+    var onDataLoaded = function( tabIndex ) {
+        var cfg = $.extend( {}, blockCfg, { zone: tabIndex } );
+
+        eZFlow.BlockDD.cfg = cfg;
+        eZFlow.BlockDD.init();
+        eZFlow.BlockCollapse.init();
+        eZFlow.ScheduleDialog.init();
+        BlockDDInit.cfg = cfg;
+        BlockDDInit();
+    };
+
+    var loadTab = function( tabIndex ) {
+        var tab = tabs[tabIndex];
+
+        if ( tab.dataLoaded || tab.loading ) {
+            return;
         }
-        else {
-            tabView.set( 'activeIndex', 0 );
-        }
+        tab.loading = true;
+        content.addClass( 'loading' );
+        $.ajax( { type: 'GET', url: tab.dataSrc, dataType: 'html' } )
+            .done( function( html ) {
+                tab.contentEl.innerHTML = html;
+                tab.dataLoaded = true;
+                onDataLoaded( tabIndex );
+            } )
+            .always( function() {
+                tab.loading = false;
+                content.removeClass( 'loading' );
+            } );
+    };
 
-        var tabs = tabView.get("tabs");
-        for( var i = 0; i < tabs.length; i++ ) {
-            tabs[i].on("dataLoadedChange", function(e) {
-                YAHOO.util.Event.onContentReady("zone-tabs-container", function() {
-                    var cfg = {
-        {/literal} 
-                        url: "{'ezflow/request'|ezurl('no')}",
-                        attributeid: {$attribute.id},
-                        version: {$attribute.version},
-                        zone: tabView.getTabIndex(this)
-        {literal} 
-                    };
-                    YAHOO.ez.BlockDD.cfg = cfg;
-                    YAHOO.ez.BlockDD.init();
-                    YAHOO.ez.BlockCollapse.init();
-                    YAHOO.ez.sheduleDialog.init();
-                    BlockDDInit.cfg = cfg;
-                    BlockDDInit();
-                }, this, true);
-            });
+    var setActiveIndex = function( tabIndex, fireChange ) {
+        if ( tabIndex === activeIndex || !tabs[tabIndex] ) {
+            return;
         }
+        if ( tabs[activeIndex] ) {
+            tabs[activeIndex].li.removeClass( 'selected' ).removeAttr( 'title' );
+            $( tabs[activeIndex].contentEl ).addClass( 'ezpage-tabs-hidden' );
+        }
+        activeIndex = tabIndex;
+        tabs[tabIndex].li.addClass( 'selected' ).attr( 'title', 'active' );
+        $( tabs[tabIndex].contentEl ).removeClass( 'ezpage-tabs-hidden' );
+        loadTab( tabIndex );
 
-        tabView.on("activeTabChange", function(e) {
-            var tabIndex = tabView.getTabIndex( e.newValue );
-            YAHOO.util.Cookie.set("eZPageActiveTabIndex", tabIndex, {path: "/"});
+        if ( fireChange ) {
+            eZFlow.Cookie.set( "eZPageActiveTabIndex", tabIndex, "/" );
             BlockDDInit.cfg.zone = tabIndex;
-        });
+        }
+    };
 
-        tabView.appendTo('zone-tabs-container');
-        {/literal}
-    {rdelim}
+    $.each( tabs, function( i, tab ) {
+        tab.li = $( '<li><a href="#"><em></em></a></li>' );
+        tab.li.find( 'em' ).html( tab.label );
+        tab.li.children( 'a' ).on( 'click', function( e ) {
+            e.preventDefault();
+            setActiveIndex( i, true );
+        } );
+        nav.append( tab.li );
+        tab.contentEl = $( '<div class="ezpage-tabs-hidden"></div>' ).appendTo( content )[0];
+    } );
 
-    loader.addModule({ldelim}
-        name: 'blocktools',
-        type: 'js',
-        fullpath: '{"javascript/blocktools.js"|ezdesign( 'no' )}'
-    {rdelim});
+    navset.appendTo( '#zone-tabs-container' );
 
-    loader.addModule({ldelim}
-        name: 'zonetools',
-        type: 'js',
-        fullpath: '{"javascript/zonetools.js"|ezdesign( 'no' )}'
-    {rdelim});
+    var activeTabIndex = eZFlow.Cookie.get( 'eZPageActiveTabIndex' );
 
-    loader.addModule({ldelim}
-        name: 'scheduledialog',
-        type: 'js',
-        fullpath: '{"javascript/scheduledialog.js"|ezdesign( 'no' )}'
-    {rdelim});
-
-    loader.addModule({ldelim}
-        name: 'scheduledialog-css',
-        type: 'css',
-        fullpath: '{"stylesheets/scheduledialog.css"|ezdesign( 'no' )}'
-    {rdelim});
-
-    loader.addModule({ldelim}
-        name: 'pagedatatype-css',
-        type: 'css',
-        fullpath: '{"stylesheets/ezpage/ezpage.css"|ezdesign( 'no' )}'
-    {rdelim});
-
-    loader.require(["button","calendar","container","cookie","get","json","tabview","utilities","blocktools","zonetools","scheduledialog","scheduledialog-css", "pagedatatype-css"]);
-
-    loader.insert();
-
-{rdelim})();
+    if ( activeTabIndex && tabs[ parseInt( activeTabIndex, 10 ) ] ) {
+        setActiveIndex( parseInt( activeTabIndex, 10 ), false );
+    }
+    else {
+        setActiveIndex( 0, false );
+    }
+    {/literal}
+{rdelim});
 
 function confirmDiscard( question )
 {ldelim}

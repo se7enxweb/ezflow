@@ -1,10 +1,8 @@
-{ezscript_require( array( 'ezjsc::yui3', 'ezjsc::yui3io' ) )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
 <script type="text/javascript">
 (function() {ldelim}
 
-YUI( YUI3_config ).use( 'node', 'event', 'io-ez', function(Y, result) {ldelim}
-
-    Y.on('domready', function(e) {ldelim}
+jQuery(function($) {ldelim}
 
         var offset = 0;
         var limit = 3;
@@ -12,7 +10,7 @@ YUI( YUI3_config ).use( 'node', 'event', 'io-ez', function(Y, result) {ldelim}
 
         var handleRequest = function(e) {ldelim}
 
-            var className = e.target.get('className');
+            var className = e.target.className;
             if ( className == 'carousel-next-button' ) {ldelim}
 
                 offset += 3;
@@ -31,45 +29,44 @@ YUI( YUI3_config ).use( 'node', 'event', 'io-ez', function(Y, result) {ldelim}
                     offset -= 3;
             {rdelim}
 
-            var colContent = Y.Node.all('#block-{$block.id} .col-content');
-            colContent.each(function(n, e) {ldelim}
+            var colContent = $('#block-{$block.id} .col-content');
+            colContent.each(function() {ldelim}
 
+                var n = $(this);
                 n.addClass('loading');
-                var height = n.get('region').bottom - n.get('region').top;
-                n.setStyle('height', height + 'px');
-                n.set('innerHTML', '');
+                var height = this.getBoundingClientRect().bottom - this.getBoundingClientRect().top;
+                n.css('height', height + 'px');
+                n.html('');
             {rdelim});
 
             var data = 'http_accept=json&offset=' + offset;
             data += '&limit=' + limit;
             data += '&block_id={$block.id}';
 
-            Y.io.ez( 'ezflow::getvaliditems', {ldelim} on: {ldelim} success: _callBack {rdelim}, method: 'POST', data: data {rdelim} );
+            $.ez( 'ezflow::getvaliditems', data, _callBack );
         {rdelim};
 
-        var _callBack = function(id, o) {ldelim}
+        var _callBack = function(response) {ldelim}
 
-            if ( o.responseJSON !== undefined ) {ldelim}
+            if ( response !== undefined && response !== null ) {ldelim}
 
-                var response = o.responseJSON;
-                var colContent = Y.Node.all('#block-{$block.id} .col-content');
+                var colContent = $('#block-{$block.id} .col-content');
 
-                for(var i = 0; i < colContent.size(); i++) {ldelim}
+                for(var i = 0; i < colContent.length; i++) {ldelim}
 
-                    var colNode = colContent.item(i);
+                    var colNode = colContent.eq(i);
                     if ( response.content[i] !== undefined )
-                        colNode.set('innerHTML', response.content[i] );
+                        colNode.html( response.content[i] );
                 {rdelim}
             {rdelim}
         {rdelim};
 
-            var prevButton = Y.one('#block-{$block.id} input.carousel-prev-button');
+            var prevButton = $('#block-{$block.id} input.carousel-prev-button').first();
             prevButton.on('click', handleRequest);
 
-            var nextButton = Y.one('#block-{$block.id} input.carousel-next-button');
+            var nextButton = $('#block-{$block.id} input.carousel-next-button').first();
             nextButton.on('click', handleRequest);
 
-    {rdelim});
 {rdelim});
 
 {rdelim})();

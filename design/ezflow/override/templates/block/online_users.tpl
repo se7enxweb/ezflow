@@ -12,26 +12,25 @@
 
 </div>
 
-{ezscript_require( array( 'ezjsc::yui3', 'ezjsc::yui3io' ) )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
 <script type="text/javascript">
 {literal}
 (function() {
-YUI(YUI3_config).use('node', 'event', 'io-ez', function(Y) {
-    function ioCallBack( id, o )
+jQuery(function($) {
+    function ioCallBack( response )
     {
-        if ( o.responseJSON !== undefined )
+        if ( response !== undefined && response !== null )
         {
-            var response = o.responseJSON;
             if ( response.content !== undefined )
             {
 {/literal}
-                Y.one( '#logged-in-count-{$block.id}' ).set( 'innerHTML', response.content.logged_in_count );
-                //Y.one( '#anonymous-count-{$block.id}' ).set( 'innerHTML', response.content.anonymous_count );
+                $( '#logged-in-count-{$block.id}' ).first().html( response.content.logged_in_count );
+                //$( '#anonymous-count-{$block.id}' ).first().html( response.content.anonymous_count );
 {literal}
             }
         }
     }
-    Y.io.ez( 'ezflow::onlineusers', { on: { success: ioCallBack } } );
+    $.ez( 'ezflow::onlineusers', false, ioCallBack );
 });
 
 })();

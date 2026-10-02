@@ -68,55 +68,29 @@
     </div>
 </div>
 
-{ezscript_require( 'ezjsc::yui2' )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezflowcalendar.js', 'timeline/timeline.js' ) )}
+{ezcss_require( array( 'ezflowwidgets.css', 'timeline/timeline.css' ) )}
 
 <script type="text/javascript">
 (function() {ldelim}
-    YUILoader.onSuccess = function() {ldelim}
+    var timeline = window.eZFlowTimeline;
 
-        YAHOO.namespace("timeline.slider");
-        YAHOO.timeline.slider.initalSliderPosition = {sum( $now_in_pixels, $slide_label_inital_spacing )};
+    timeline.slider.initalSliderPosition = {sum( $now_in_pixels, $slide_label_inital_spacing )};
 
-        YAHOO.timeline.slider.slideLabelInitalSpacing = {$slide_label_inital_spacing};
-        YAHOO.timeline.slider.middeStartPx = 80;
-        YAHOO.timeline.slider.rightStartPx = 640;
+    timeline.slider.slideLabelInitalSpacing = {$slide_label_inital_spacing};
+    timeline.slider.middeStartPx = 80;
+    timeline.slider.rightStartPx = 640;
 
-        YAHOO.timeline.slider.timestampStart = {$past_start};
-        YAHOO.timeline.slider.timeStartHours = {$past_start|datetime( 'custom', '%H' )};
-        YAHOO.timeline.slider.timeStartMinutes = {$past_start|datetime( 'custom', '%i' )};
+    timeline.slider.timestampStart = {$past_start};
+    timeline.slider.timeStartHours = {$past_start|datetime( 'custom', '%H' )};
+    timeline.slider.timeStartMinutes = {$past_start|datetime( 'custom', '%i' )};
 
-        YAHOO.timeline.slider.nodeid = {$node.node_id};
-        YAHOO.timeline.slider.fetchURL = {"/ezflow/preview"|ezurl};
+    timeline.slider.nodeid = {$node.node_id};
+    timeline.slider.fetchURL = {"/ezflow/preview"|ezurl};
 
+    timeline.calendar.arrowImageUP = 'url({"timeline/arrow_up.gif"|ezimage(no)})';
+    timeline.calendar.arrowImageDown = 'url({"timeline/arrow_down.gif"|ezimage(no)})';
 
-        YAHOO.namespace("timeline.calendar");    
-        YAHOO.timeline.calendar.arrowImageUP = 'url({"timeline/arrow_up.gif"|ezimage(no)})';
-        YAHOO.timeline.calendar.arrowImageDown = 'url({"timeline/arrow_down.gif"|ezimage(no)})';
-    {rdelim}
-
-    YUILoader.addModule({ldelim}
-        
-        name: 'prototype',
-        type: 'js',
-        fullpath: '{"javascript/prototype.js"|ezdesign( 'no' )}'
-    {rdelim});
-    
-    YUILoader.addModule({ldelim}
-        
-        name: 'timeline',
-        type: 'js',
-        fullpath: '{"javascript/timeline/timeline.js"|ezdesign( 'no' )}'
-    {rdelim});
-
-    YUILoader.addModule({ldelim}
-        
-        name: 'timeline-css',
-        type: 'css',
-        fullpath: '{"stylesheets/timeline/timeline.css"|ezdesign( 'no' )}'
-    {rdelim});
-    
-    YUILoader.require(["calendar","slider","utilities","timeline","timeline-css","prototype"]);
-    YUILoader.insert();
-
+    jQuery( timeline.init );
 {rdelim})();
 </script>

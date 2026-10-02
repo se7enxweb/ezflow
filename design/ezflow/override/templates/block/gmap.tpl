@@ -1,7 +1,7 @@
 {def $key = $block.custom_attributes.key
      $location = $block.custom_attributes.location}
 
-{ezscript_require( 'ezjsc::yui3' )}
+{ezscript_require( 'ezjsc::jquery' )}
 
 <h1>{$block.name|wash()}</h1>
 
@@ -16,8 +16,7 @@
 {/if}
 
 <script type="text/javascript">
-YUI(YUI3_config).use('event', function(Y) {ldelim}
-    Y.on('domready', function() {ldelim}
+jQuery(function() {ldelim}
 
         var mapContainer = document.getElementById("map-container-{$block.id}");
 
@@ -45,7 +44,6 @@ YUI(YUI3_config).use('event', function(Y) {ldelim}
             {rdelim}
         });
 
-    {rdelim});
 {rdelim});
 </script>
 

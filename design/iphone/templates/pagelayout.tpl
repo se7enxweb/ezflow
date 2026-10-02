@@ -59,30 +59,37 @@
                     
                     {undef $root_node $menu_items}
                 </div>
-                {ezscript_require( 'ezjsc::yui3' )}
                 <script type="text/javascript">
                 {literal}
-                    YUI(YUI3_config).use('node','dom','event','anim', function(Y)  {
-                        Y.one('#nav-menu-handler').on('click', function(e) {
-                            var node = Y.one('#nav-menu-items');
-                            node.setStyle( 'display', 'block' );
-                                                                                        
-                            var anim = new Y.Anim({ node: node,
-                                                    from: { height: 0 },
-                                                    to: { height: function(node) {
-                                                                    return node.get('scrollHeight');
-                                                        } },
-                                                    easing: Y.Easing.easeOut 
-                                                 });
-                            anim.on( 'start', function(e) {
-                                this.get('node').setStyle( 'height', '0px' );
-                            } );
-                            anim.on( 'end', function(e) {
-                                this.get('node').addClass( 'nav-menu-expanded' );
-                            });
-                            anim.run();
-                        });
-                    } );
+                    (function() {
+                        var handler = document.getElementById( 'nav-menu-handler' );
+                        if ( !handler ) {
+                            return;
+                        }
+                        handler.addEventListener( 'click', function() {
+                            var node = document.getElementById( 'nav-menu-items' ),
+                                duration = 1000, start = null, to;
+
+                            node.style.display = 'block';
+                            node.style.height = '0px';
+                            to = node.scrollHeight;
+
+                            // slide open from 0 to the full height, quadratic ease out
+                            var step = function( now ) {
+                                if ( start === null ) {
+                                    start = now;
+                                }
+                                var t = Math.min( 1, ( now - start ) / duration );
+                                node.style.height = ( to * ( 1 - ( 1 - t ) * ( 1 - t ) ) ) + 'px';
+                                if ( t < 1 ) {
+                                    window.requestAnimationFrame( step );
+                                } else {
+                                    node.classList.add( 'nav-menu-expanded' );
+                                }
+                            };
+                            window.requestAnimationFrame( step );
+                        } );
+                    })();
                 {/literal}
                 </script>
             </div>
