@@ -1,4 +1,5 @@
 <?php
+// @description Update the ezflow pool table ezm_pool
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Flow

@@ -1,4 +1,5 @@
 <?php
+// @description Clean up the removed items of the ezflow pool
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Flow
