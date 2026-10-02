@@ -15,7 +15,7 @@ class ezflowInfo
     {
         return array(
             'Name' => 'eZ Flow LS',
-            'Version' => '6.1.4',
+            'Version' => '6.1.5',
             'Copyright' => 'Copyright (C) 1998 - 2026 7x & Exponential Foundation. Copyright (C) 1999-2014 eZ Systems AS. All rights reserved.',
             'License' => 'GNU General Public License v2.0 (or any later version)',
             'Info_url' => 'https://github.com/se7enxweb/ezflow',
