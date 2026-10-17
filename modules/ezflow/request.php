@@ -26,8 +26,8 @@
 //
 
 
-if ( !function_exists( 'createParamsFromStr' ) ) {
-function createParamsFromStr( $str )
+if ( !function_exists( 'expModuleViewEzflowRequestCreateParamsFromStr' ) ) {
+function expModuleViewEzflowRequestCreateParamsFromStr( $str )
 {
     $params = array();
 
@@ -57,7 +57,7 @@ if ( $http->hasPostVariable( 'Items' ) )
     $items = $http->postVariable( 'Items' );
 
 if ( $http->hasPostVariable( 'Block' ) )
-    $blockParams = createParamsFromStr( $http->postVariable( 'Block' ) );
+    $blockParams = expModuleViewEzflowRequestCreateParamsFromStr( $http->postVariable( 'Block' ) );
 
 if ( isset( $blockParams['z'] ) )
     $zoneID = $blockParams['z'];
@@ -78,7 +78,7 @@ $waitingCount = count( $block->attribute('waiting') );
 
 foreach( $items as $key => $item )
 {
-    $itemParams = createParamsFromStr( $item );
+    $itemParams = expModuleViewEzflowRequestCreateParamsFromStr( $item );
 
     if( array_key_exists( 'o', $blockParams ) )
     {
