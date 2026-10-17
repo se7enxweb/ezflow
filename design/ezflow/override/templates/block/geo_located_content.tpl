@@ -40,7 +40,7 @@
     {foreach $locations as $location}
     gmapDataArray.push( {ldelim}
                             point: new google.maps.LatLng( {$location.data_map[$attribute].content.latitude}, {$location.data_map[$attribute].content.longitude} ),
-                            address: '{$location.data_map[$attribute].content.address|wash("javascript")}'
+                            address: '{$location.data_map[$attribute].content.address|wash|wash("javascript")}'
                         {rdelim} );
     {/foreach}
 
