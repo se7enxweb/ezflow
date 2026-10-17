@@ -37,7 +37,12 @@
 (function() {ldelim}
     var gmapDataArray = [];
 
+    {* ezflgmapview.js hands the address to infoWindow.setContent(), which reads HTML: escaped for HTML first, then
+       for the JavaScript string. A location without a map value is left out: it wrote LatLng( ,  ), a syntax
+       error that stopped the whole map. *}
     {foreach $locations as $location}
+    {if is_set( $location.data_map[$attribute] )|not}{continue}{/if}
+    {if $location.data_map[$attribute].has_content|not}{continue}{/if}
     gmapDataArray.push( {ldelim}
                             point: new google.maps.LatLng( {$location.data_map[$attribute].content.latitude}, {$location.data_map[$attribute].content.longitude} ),
                             address: '{$location.data_map[$attribute].content.address|wash|wash("javascript")}'
