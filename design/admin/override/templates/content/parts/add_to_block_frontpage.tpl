@@ -21,7 +21,7 @@
 </div>
 
 <div class="block search-results">
-    <div id="search-results-{$object.id}" style="overflow: hidden">
+    <div id="search-results-{$object.id}" class="ezflow-search-results">
 </div>
 
 {foreach $content_attributes as $content_attribute}
