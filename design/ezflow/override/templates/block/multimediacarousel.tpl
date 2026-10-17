@@ -1,80 +1,9 @@
-{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
-<script type="text/javascript">
-(function() {ldelim}
-
-jQuery(function($) {ldelim}
-
-        var offset = 0;
-        var limit = 3;
-        var total = {$block.valid_nodes|count()};
-
-        var handleRequest = function(e) {ldelim}
-
-            var className = e.target.className;
-            if ( className == 'carousel-next-button' ) {ldelim}
-
-                offset += 3;
-
-                if ( offset > total )
-                    offset = 0;
-            {rdelim}
-
-            if ( className == 'carousel-prev-button' ) {ldelim}
-
-                var diff = total - offset;
-
-                if( offset == 0 )
-                    offset = Math.floor( total / 3 ) * 3;
-                else
-                    offset -= 3;
-            {rdelim}
-
-            var colContent = $('#block-{$block.id} .col-content');
-            colContent.each(function() {ldelim}
-
-                var n = $(this);
-                n.addClass('loading');
-                var height = this.getBoundingClientRect().bottom - this.getBoundingClientRect().top;
-                n.css('height', height + 'px');
-                n.html('');
-            {rdelim});
-
-            var data = 'http_accept=json&offset=' + offset;
-            data += '&limit=' + limit;
-            data += '&block_id={$block.id}';
-
-            $.ez( 'ezflow::getvaliditems', data, _callBack );
-        {rdelim};
-
-        var _callBack = function(response) {ldelim}
-
-            if ( response !== undefined && response !== null ) {ldelim}
-
-                var colContent = $('#block-{$block.id} .col-content');
-
-                for(var i = 0; i < colContent.length; i++) {ldelim}
-
-                    var colNode = colContent.eq(i);
-                    if ( response.content[i] !== undefined )
-                        colNode.html( response.content[i] );
-                {rdelim}
-            {rdelim}
-        {rdelim};
-
-            var prevButton = $('#block-{$block.id} input.carousel-prev-button').first();
-            prevButton.on('click', handleRequest);
-
-            var nextButton = $('#block-{$block.id} input.carousel-next-button').first();
-            nextButton.on('click', handleRequest);
-
-{rdelim});
-
-{rdelim})();
-</script>
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezflow_blocks.js' ) )}
 
 {def $valid_nodes = $block.valid_nodes}
 <!-- BLOCK: START -->
-<div id="block-{$block.id}" class="block-type-gallery">
+{* The previous/next buttons load three items at a time (javascript/ezflow_blocks.js; no inline code). *}
+<div id="block-{$block.id}" class="block-type-gallery" data-ezflow-carousel="{$block.id|wash}" data-total="{$valid_nodes|count()}">
 
 <div class="border-box block-style6-box-outside">
 <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>

@@ -280,3 +280,29 @@ var eZPushToBlock = function( $ ) {
     return ret;
 
 }( jQuery );
+
+/*
+ * Templates without inline code: the push form (page/push.tpl) carries its settings in data-ezflow-push (JSON:
+ * requesturl, nodename, imagepath, nodeid) and the placement tools start from them when the page is ready, the way
+ * the inline "eZPushToBlock.cfg = { ... }; eZPushToBlock.init();" did. Set up once, however often this file is printed.
+ */
+( function( $ )
+{
+    if ( eZPushToBlock.dataSetup ) return;
+    eZPushToBlock.dataSetup = true;
+
+    $( function()
+    {
+        var form = $( '[data-ezflow-push]' ).first();
+        if ( !form.length ) return;
+        try
+        {
+            eZPushToBlock.cfg = JSON.parse( form.attr( 'data-ezflow-push' ) );
+        }
+        catch ( e )
+        {
+            return;
+        }
+        eZPushToBlock.init();
+    } );
+} )( jQuery );

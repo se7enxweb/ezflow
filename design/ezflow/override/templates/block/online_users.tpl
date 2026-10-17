@@ -1,4 +1,5 @@
-<div class="block-type-online-users block-view-{$block.view}">
+{* The count is refreshed through ezjscore by javascript/ezflow_blocks.js (no inline code). *}
+<div class="block-type-online-users block-view-{$block.view}" data-ezflow-online-users="{$block.id|wash}">
 
 <div class="attribute-header"><h2>{$block.name|wash()}</h2></div>
 
@@ -12,28 +13,5 @@
 
 </div>
 
-{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
-<script type="text/javascript">
-{literal}
-(function() {
-jQuery(function($) {
-    function ioCallBack( response )
-    {
-        if ( response !== undefined && response !== null )
-        {
-            if ( response.content !== undefined )
-            {
-{/literal}
-                $( '#logged-in-count-{$block.id}' ).first().html( response.content.logged_in_count );
-                //$( '#anonymous-count-{$block.id}' ).first().html( response.content.anonymous_count );
-{literal}
-            }
-        }
-    }
-    $.ez( 'ezflow::onlineusers', false, ioCallBack );
-});
-
-})();
-{/literal}
-</script>
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezflow_blocks.js' ) )}
 {undef $logged_in_count}

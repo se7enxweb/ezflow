@@ -475,3 +475,31 @@ timeline.init = function()
 };
 
 })( jQuery, eZFlowTimeline );
+
+/*
+ * Templates without inline code: extra/timeline.tpl carries the settings above in data-ezflow-timeline (JSON: slider
+ * and calendar, merged into eZFlowTimeline.slider / .calendar) and the timeline starts from them when the page is
+ * ready, the way the inline script did. Set up once, however often this file is printed.
+ */
+( function( $, timeline )
+{
+    if ( timeline.dataSetup ) return;
+    timeline.dataSetup = true;
+
+    $( function()
+    {
+        var box = $( '[data-ezflow-timeline]' ).first(), cfg;
+        if ( !box.length ) return;
+        try
+        {
+            cfg = JSON.parse( box.attr( 'data-ezflow-timeline' ) );
+        }
+        catch ( e )
+        {
+            return;
+        }
+        $.extend( timeline.slider, cfg.slider || {} );
+        $.extend( timeline.calendar, cfg.calendar || {} );
+        timeline.init();
+    } );
+} )( jQuery, eZFlowTimeline );

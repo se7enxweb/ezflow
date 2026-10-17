@@ -34,7 +34,23 @@
         {set $zone_names = ezini( $zone_layout, 'ZoneName', 'zone.ini' )}
     {/if}
 
-<div id="page-datatype-container" class="ezpage-tabs-skin">
+{* The zone layout and the zone tabs, for javascript/ezflow_edit.js (no inline code): one tab per zone, its content
+   loaded once from the ezflow/zone view, with the settings of the block tools. *}
+{def $ezflow_tabs = array()}
+{foreach $attribute.content.zones as $index => $zone}
+    {if and( is_set( $zone.action ), eq( $zone.action, 'remove' ) )}
+        {skip}
+    {/if}
+    {set $ezflow_tabs = $ezflow_tabs|merge( array( hash( 'label', $zone_names[$zone.zone_identifier],
+                                                          'dataSrc', concat( '/ezflow/zone/', $attribute.id, '/', $attribute.version, '/', $index )|ezurl( 'no' ) ) ) )}
+{/foreach}
+<div id="page-datatype-container" class="ezpage-tabs-skin" data-ezflow-page="{json_encode( hash( 'allowedzones', $allowed_zones|json(),
+                                                                                                 'zonelayout', $zone_layout,
+                                                                                                 'tabs', $ezflow_tabs,
+                                                                                                 'blockCfg', hash( 'url', 'ezflow/request'|ezurl( 'no' ),
+                                                                                                                   'attributeid', $attribute.id,
+                                                                                                                   'version', $attribute.version ) ) )|wash}">
+{undef $ezflow_tabs}
 {if and( $can_change_layout, $layout_for_current_class )}
 <div class="zones float-break">
 {foreach $allowed_zones as $allowed_zone}
@@ -65,118 +81,5 @@
 <div id="zone-tabs-container"></div>
 </div>
 
-{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezflowcalendar.js', 'blocktools.js', 'zonetools.js', 'scheduledialog.js' ) )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezflowcalendar.js', 'blocktools.js', 'zonetools.js', 'scheduledialog.js', 'ezflow_edit.js' ) )}
 {ezcss_require( array( 'ezflowwidgets.css', 'scheduledialog.css', 'ezpage/ezpage.css' ) )}
-
-<script type="text/javascript">
-jQuery(function( $ ) {ldelim}
-    eZFlow.ZoneLayout.cfg = {ldelim} 'allowedzones': '{$allowed_zones|json()}',
-                                     'zonelayout': '{$zone_layout}' {rdelim};
-    eZFlow.ZoneLayout.init();
-
-    var tabs = [];
-
-    {foreach $attribute.content.zones as $index => $zone}
-        {if and( is_set( $zone.action ), eq( $zone.action, 'remove' ) )}
-            {skip}
-        {/if}
-        tabs.push( {ldelim}
-            label: '{$zone_names[$zone.zone_identifier]}',
-            dataSrc: '{concat( '/ezflow/zone/', $attribute.id, '/', $attribute.version, '/', $index  )|ezurl(no)}',
-            dataLoaded: false
-            {rdelim} );
-    {/foreach}
-
-    var blockCfg = {ldelim}
-        url: "{'ezflow/request'|ezurl('no')}",
-        attributeid: {$attribute.id},
-        version: {$attribute.version}
-    {rdelim};
-
-    {literal}
-    // Zone tab view: one tab per zone, its content loaded once from the ezflow/zone view
-    var navset = $( '<div class="ezpage-tabs ezpage-tabs-top"><ul class="ezpage-tabs-nav"></ul><div class="ezpage-tabs-content"></div></div>' ),
-        nav = navset.children( '.ezpage-tabs-nav' ),
-        content = navset.children( '.ezpage-tabs-content' ),
-        activeIndex = -1;
-
-    var onDataLoaded = function( tabIndex ) {
-        var cfg = $.extend( {}, blockCfg, { zone: tabIndex } );
-
-        eZFlow.BlockDD.cfg = cfg;
-        eZFlow.BlockDD.init();
-        eZFlow.BlockCollapse.init();
-        eZFlow.ScheduleDialog.init();
-        BlockDDInit.cfg = cfg;
-        BlockDDInit();
-    };
-
-    var loadTab = function( tabIndex ) {
-        var tab = tabs[tabIndex];
-
-        if ( tab.dataLoaded || tab.loading ) {
-            return;
-        }
-        tab.loading = true;
-        content.addClass( 'loading' );
-        $.ajax( { type: 'GET', url: tab.dataSrc, dataType: 'html' } )
-            .done( function( html ) {
-                tab.contentEl.innerHTML = html;
-                tab.dataLoaded = true;
-                onDataLoaded( tabIndex );
-            } )
-            .always( function() {
-                tab.loading = false;
-                content.removeClass( 'loading' );
-            } );
-    };
-
-    var setActiveIndex = function( tabIndex, fireChange ) {
-        if ( tabIndex === activeIndex || !tabs[tabIndex] ) {
-            return;
-        }
-        if ( tabs[activeIndex] ) {
-            tabs[activeIndex].li.removeClass( 'selected' ).removeAttr( 'title' );
-            $( tabs[activeIndex].contentEl ).addClass( 'ezpage-tabs-hidden' );
-        }
-        activeIndex = tabIndex;
-        tabs[tabIndex].li.addClass( 'selected' ).attr( 'title', 'active' );
-        $( tabs[tabIndex].contentEl ).removeClass( 'ezpage-tabs-hidden' );
-        loadTab( tabIndex );
-
-        if ( fireChange ) {
-            eZFlow.Cookie.set( "eZPageActiveTabIndex", tabIndex, "/" );
-            BlockDDInit.cfg.zone = tabIndex;
-        }
-    };
-
-    $.each( tabs, function( i, tab ) {
-        tab.li = $( '<li><a href="#"><em></em></a></li>' );
-        tab.li.find( 'em' ).html( tab.label );
-        tab.li.children( 'a' ).on( 'click', function( e ) {
-            e.preventDefault();
-            setActiveIndex( i, true );
-        } );
-        nav.append( tab.li );
-        tab.contentEl = $( '<div class="ezpage-tabs-hidden"></div>' ).appendTo( content )[0];
-    } );
-
-    navset.appendTo( '#zone-tabs-container' );
-
-    var activeTabIndex = eZFlow.Cookie.get( 'eZPageActiveTabIndex' );
-
-    if ( activeTabIndex && tabs[ parseInt( activeTabIndex, 10 ) ] ) {
-        setActiveIndex( parseInt( activeTabIndex, 10 ), false );
-    }
-    else {
-        setActiveIndex( 0, false );
-    }
-    {/literal}
-{rdelim});
-
-function confirmDiscard( question )
-{ldelim}
-    // Ask user if he really wants to do it.
-    return confirm( question );
-{rdelim}
-</script>

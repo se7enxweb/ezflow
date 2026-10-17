@@ -14,7 +14,18 @@
 {set $now_in_pixels=$now_in_pixels|sum( $slide_label_inital_spacing )}
 
 
-<div id="ezflow-timeline">
+{* The settings of the timeline, read by javascript/timeline/timeline.js when the page is ready (no inline code). *}
+<div id="ezflow-timeline" data-ezflow-timeline="{json_encode( hash( 'slider', hash( 'initalSliderPosition', sum( $now_in_pixels, $slide_label_inital_spacing ),
+                                                                                    'slideLabelInitalSpacing', $slide_label_inital_spacing,
+                                                                                    'middeStartPx', 80,
+                                                                                    'rightStartPx', 640,
+                                                                                    'timestampStart', $past_start,
+                                                                                    'timeStartHours', $past_start|datetime( 'custom', '%H' )|int,
+                                                                                    'timeStartMinutes', $past_start|datetime( 'custom', '%i' )|int,
+                                                                                    'nodeid', $node.node_id,
+                                                                                    'fetchURL', '/ezflow/preview'|ezurl( 'no' ) ),
+                                                                    'calendar', hash( 'arrowImageUP', concat( 'url(', 'timeline/arrow_up.gif'|ezimage( 'no' ), ')' ),
+                                                                                      'arrowImageDown', concat( 'url(', 'timeline/arrow_down.gif'|ezimage( 'no' ), ')' ) ) ) )|wash}">
 
     <div id="timeline-loader">
         <p><span class="text">Loading, please wait...</span><img src={"timeline/loading.gif"|ezimage} alt="Loading" title="Loading" /></p>
@@ -70,27 +81,3 @@
 
 {ezscript_require( array( 'ezjsc::jquery', 'ezflowcalendar.js', 'timeline/timeline.js' ) )}
 {ezcss_require( array( 'ezflowwidgets.css', 'timeline/timeline.css' ) )}
-
-<script type="text/javascript">
-(function() {ldelim}
-    var timeline = window.eZFlowTimeline;
-
-    timeline.slider.initalSliderPosition = {sum( $now_in_pixels, $slide_label_inital_spacing )};
-
-    timeline.slider.slideLabelInitalSpacing = {$slide_label_inital_spacing};
-    timeline.slider.middeStartPx = 80;
-    timeline.slider.rightStartPx = 640;
-
-    timeline.slider.timestampStart = {$past_start};
-    timeline.slider.timeStartHours = {$past_start|datetime( 'custom', '%H' )};
-    timeline.slider.timeStartMinutes = {$past_start|datetime( 'custom', '%i' )};
-
-    timeline.slider.nodeid = {$node.node_id};
-    timeline.slider.fetchURL = {"/ezflow/preview"|ezurl};
-
-    timeline.calendar.arrowImageUP = 'url({"timeline/arrow_up.gif"|ezimage(no)})';
-    timeline.calendar.arrowImageDown = 'url({"timeline/arrow_down.gif"|ezimage(no)})';
-
-    jQuery( timeline.init );
-{rdelim})();
-</script>

@@ -9,7 +9,8 @@
 <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
 <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 
-<form method="post" action="{concat('ezflow/push/', $node.node_id)|ezurl('no')}">
+{* The settings of the placement tools (ezpushtoblock.js reads them when the page is ready; no inline code). *}
+<form method="post" action="{concat('ezflow/push/', $node.node_id)|ezurl('no')}" data-ezflow-push="{json_encode( hash( 'requesturl', 'ezflow/get'|ezurl('no'), 'nodename', $node.name|wash()|shorten( '50' ), 'imagepath', 'ezpage/clock_ico.gif'|ezimage('no'), 'nodeid', $node.node_id ) )|wash}">
 
 <h1>{'Choose placement for "%node_name"'|i18n('design/standard/page/push', , hash( '%node_name', $node.name|wash() ) )}</h1>
 
@@ -54,16 +55,3 @@
 
 {ezscript_require( array( 'ezjsc::jquery', 'ezflowcalendar.js', 'scheduledialog.js', 'ezpushtoblock.js' ) )}
 {ezcss_require( array( 'ezflowwidgets.css', 'scheduledialog.css' ) )}
-
-<script type="text/javascript">
-    jQuery(function() {ldelim}
-        eZPushToBlock.cfg = {ldelim}
-            requesturl: "{'ezflow/get'|ezurl('no')}",
-            nodename: "{$node.name|wash()|shorten( '50' )}",
-            nodeid: "{$node.node_id}",
-            imagepath: "{'ezpage/clock_ico.gif'|ezimage('no')}"
-        {rdelim}
-
-        eZPushToBlock.init();
-    {rdelim});
-</script>

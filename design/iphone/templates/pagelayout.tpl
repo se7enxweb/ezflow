@@ -42,7 +42,7 @@
                 </div>
             {/if}
             <div id="nav-menu">
-                <p id="nav-menu-handler">{'Navigation'|i18n('design/iphone/pagelayout')}</p>
+                <p id="nav-menu-handler" data-ezflow-nav-toggle="nav-menu-items">{'Navigation'|i18n('design/iphone/pagelayout')}</p>
                 <div id="nav-menu-items" style="display: none">
                     {def $root_node = fetch( 'content', 'node', hash( 'node_id', $module_result.content_info.node_id ) )
                          $menu_items = fetch( 'content', 'list', hash( 'parent_node_id', $root_node.node_id,
@@ -59,39 +59,8 @@
                     
                     {undef $root_node $menu_items}
                 </div>
-                <script type="text/javascript">
-                {literal}
-                    (function() {
-                        var handler = document.getElementById( 'nav-menu-handler' );
-                        if ( !handler ) {
-                            return;
-                        }
-                        handler.addEventListener( 'click', function() {
-                            var node = document.getElementById( 'nav-menu-items' ),
-                                duration = 1000, start = null, to;
-
-                            node.style.display = 'block';
-                            node.style.height = '0px';
-                            to = node.scrollHeight;
-
-                            // slide open from 0 to the full height, quadratic ease out
-                            var step = function( now ) {
-                                if ( start === null ) {
-                                    start = now;
-                                }
-                                var t = Math.min( 1, ( now - start ) / duration );
-                                node.style.height = ( to * ( 1 - ( 1 - t ) * ( 1 - t ) ) ) + 'px';
-                                if ( t < 1 ) {
-                                    window.requestAnimationFrame( step );
-                                } else {
-                                    node.classList.add( 'nav-menu-expanded' );
-                                }
-                            };
-                            window.requestAnimationFrame( step );
-                        } );
-                    })();
-                {/literal}
-                </script>
+                {* The menu button slides the menu open (javascript/ezflow_blocks.js; no inline code). *}
+                {ezscript( array( 'ezflow_blocks.js' ) )}
             </div>
 
             {$module_result.content}

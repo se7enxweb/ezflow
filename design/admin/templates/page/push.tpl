@@ -5,7 +5,8 @@
                                                        'class_filter_array', $classes ))}
 <div id="page-datatype-container" class="ezpage-tabs-skin">
 
-<form method="post" action="{concat('ezflow/push/', $node.node_id)|ezurl('no')}">
+{* The settings of the placement tools (ezpushtoblock.js reads them when the page is ready; no inline code). *}
+<form method="post" action="{concat('ezflow/push/', $node.node_id)|ezurl('no')}" data-ezflow-push="{json_encode( hash( 'requesturl', 'ezflow/get'|ezurl('no'), 'nodename', $node.name|wash()|shorten( '50' ), 'imagepath', 'ezpage/clock_ico.gif'|ezimage('no'), 'nodeid', $node.node_id ) )|wash}">
 
 <div class="context-block">
 
@@ -62,16 +63,3 @@
 
 {ezscript_require( array( 'ezjsc::jquery', 'ezflowcalendar.js', 'scheduledialog.js', 'ezpushtoblock.js' ) )}
 {ezcss_require( array( 'ezflowwidgets.css', 'scheduledialog.css' ) )}
-
-<script type="text/javascript">
-    jQuery(function() {ldelim}
-        eZPushToBlock.cfg = {ldelim}
-            requesturl: "{'ezflow/get'|ezurl('no')}",
-            nodename: "{$node.name|wash()|shorten( '50' )}",
-            imagepath: "{'ezpage/clock_ico.gif'|ezimage('no')}",
-            nodeid: {$node.node_id}
-        {rdelim}
-
-        eZPushToBlock.init();
-    {rdelim});
-</script>
