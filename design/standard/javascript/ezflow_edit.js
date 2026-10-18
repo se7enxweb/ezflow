@@ -3,9 +3,10 @@
  * they work under a Content Security Policy without 'unsafe-inline'. What the inline scripts and on...= attributes
  * did is done here from data attributes:
  *
- *   data-ezflow-confirm="question"     a button that asks first (confirm()); "Cancel" stops the click
- *   data-ezflow-discard="question"     the "Discard draft" button: as above, and it sets the form's DiscardConfirm
- *                                      to 0 first (the confirmation page of the plain HTML interface is skipped)
+ *   data-ezflow-confirm="question"     a button that asks first (confirm()); "Cancel" stops the click. Like the
+ *                                      block remove button did, it sets the form's DiscardConfirm to 0 first
+ *   data-ezflow-discard="question"     the "Discard draft" button: as above (the form's DiscardConfirm set to 0
+ *                                      first, so the confirmation page of the plain HTML interface is skipped)
  *   data-ezflow-add-block="attrID"     the block list of the frontpage edit view: the choice names the
  *                                      "Add to block" button (#addtoblock) CustomActionButton[<attrID>_new_item-<value>]
  *   data-ezflow-focus-first            a form whose first text field gets the focus when the page has loaded
@@ -24,13 +25,12 @@
     {
         var el = e.target && e.target.closest ? e.target.closest( '[data-ezflow-confirm], [data-ezflow-discard]' ) : null;
         if ( !el ) return;
-        if ( el.hasAttribute( 'data-ezflow-discard' ) )
-        {
-            if ( el.form && el.form.elements['DiscardConfirm'] ) el.form.elements['DiscardConfirm'].value = '0';
-            if ( !window.confirm( el.getAttribute( 'data-ezflow-discard' ) ) ) e.preventDefault();
-            return;
-        }
-        if ( !window.confirm( el.getAttribute( 'data-ezflow-confirm' ) ) ) e.preventDefault();
+        // Both buttons asked through confirmDiscard() before 6.1.9, which set DiscardConfirm to 0 first
+        var discardConfirm = el.form ? el.form.querySelector( '[name="DiscardConfirm"]' ) : null;
+        if ( discardConfirm ) discardConfirm.value = '0';
+        var question = el.hasAttribute( 'data-ezflow-discard' ) ? el.getAttribute( 'data-ezflow-discard' )
+                                                                 : el.getAttribute( 'data-ezflow-confirm' );
+        if ( !window.confirm( question ) ) e.preventDefault();
     } );
 
     document.addEventListener( 'change', function( e )
