@@ -77,11 +77,11 @@
     </message>
     <message>
         <source>Store draft</source>
-        <translation>Registra la bozza</translation>
+        <translation>Salva bozza</translation>
     </message>
     <message>
         <source>Store the contents of the draft that is being edited and continue editing. Use this button to periodically save your work while editing.</source>
-        <translation>Registra i contenuti della bozza che stai modificando e continua con le modifiche. Usa questo pulsante per salvare periodicamente il tuo lavoro mentre modifichi.</translation>
+        <translation>Salva i contenuti della bozza che stai modificando e continua con le modifiche. Usa questo pulsante per salvare periodicamente il tuo lavoro mentre modifichi.</translation>
     </message>
     <message>
         <source>Discard draft</source>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>Store</source>
-        <translation>Registra</translation>
+        <translation>Salva</translation>
     </message>
 </context>
 <context>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>Store draft</source>
-        <translation>Registra la bozza</translation>
+        <translation>Salva bozza</translation>
     </message>
     <message>
         <source>Discard draft</source>
@@ -397,11 +397,11 @@
     </message>
     <message>
         <source>m</source>
-        <translation>m</translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>s</source>
-        <translation>s</translation>
+        <translation>sec</translation>
     </message>
     <message>
         <source>left</source>
@@ -461,7 +461,7 @@
     </message>
     <message>
         <source>Online:</source>
-        <translation>Online:</translation>
+        <translation>Online dal:</translation>
     </message>
     <message>
         <source>History:</source>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>Publishing schedule for: </source>
-        <translation>Pubblicazione programmata per:</translation>
+        <translation>Pubblicazione programmata per: </translation>
     </message>
 </context>
 <context>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Store</source>
-        <translation>Registra</translation>
+        <translation>Salva</translation>
     </message>
 </context>
 <context>
