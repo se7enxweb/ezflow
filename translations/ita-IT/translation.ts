@@ -461,7 +461,7 @@
     </message>
     <message>
         <source>Online:</source>
-        <translation>Online:</translation>
+        <translation>In linea:</translation>
     </message>
     <message>
         <source>History:</source>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>Publishing schedule for: </source>
-        <translation>Pubblicazione programmata per:</translation>
+        <translation>Pubblicazione programmata per: </translation>
     </message>
 </context>
 <context>
@@ -517,24 +517,8 @@
         <translation>Imposta layout</translation>
     </message>
     <message>
-        <source>Block name:</source>
-        <translation type="obsolete">Nome blocco:</translation>
-    </message>
-    <message>
-        <source>Block type:</source>
-        <translation type="obsolete">Tipo blocco:</translation>
-    </message>
-    <message>
         <source>Add block</source>
         <translation>Aggiungi blocco</translation>
-    </message>
-    <message>
-        <source>Expand</source>
-        <translation type="obsolete">Espandi</translation>
-    </message>
-    <message>
-        <source>Collapse</source>
-        <translation type="obsolete">Comprimi</translation>
     </message>
     <message>
         <source>Expand All</source>
@@ -543,6 +527,22 @@
     <message>
         <source>Collapse All</source>
         <translation>Comprimi tutti</translation>
+    </message>
+    <message>
+        <source>Block name:</source>
+        <translation>Nome del blocco:</translation>
+    </message>
+    <message>
+        <source>Block type:</source>
+        <translation>Tipo di blocco:</translation>
+    </message>
+    <message>
+        <source>Expand</source>
+        <translation>Espandi</translation>
+    </message>
+    <message>
+        <source>Collapse</source>
+        <translation>Comprimi</translation>
     </message>
 </context>
 <context>
@@ -583,12 +583,12 @@
 <context>
     <name>ezflow/push</name>
     <message>
-        <source>Add to block in frontpage</source>
-        <translation type="obsolete">Spingi al blocco</translation>
-    </message>
-    <message>
         <source>Push to block</source>
         <translation>Spingi al blocco</translation>
+    </message>
+    <message>
+        <source>Add to block in frontpage</source>
+        <translation>Aggiungi a un blocco della pagina iniziale</translation>
     </message>
 </context>
 <context>

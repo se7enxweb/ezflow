@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>You have already voted for this poll.</source>
-        <translation>Du verkar redan ha röstat i den här undersökningen. </translation>
+        <translation>Du har redan röstat i den här undersökningen.</translation>
     </message>
     <message>
         <source>Votes</source>
@@ -385,7 +385,6 @@
     </message>
     <message>
         <source>s</source>
-        <translatorcomment>för lite kontext</translatorcomment>
         <translation>s</translation>
     </message>
     <message>
@@ -410,7 +409,6 @@
     </message>
     <message>
         <source>hour</source>
-        <translatorcomment>för lite kontext</translatorcomment>
         <translation>timme</translation>
     </message>
     <message>
@@ -471,7 +469,7 @@
     </message>
     <message>
         <source>Publishing schedule for: </source>
-        <translation>Publiceringsschema för:</translation>
+        <translation>Publiceringsschema för: </translation>
     </message>
 </context>
 <context>
@@ -513,6 +511,22 @@
     <message>
         <source>Collapse All</source>
         <translation>Dölj alla detaljer</translation>
+    </message>
+    <message>
+        <source>Block name:</source>
+        <translation>Blocknamn:</translation>
+    </message>
+    <message>
+        <source>Block type:</source>
+        <translation>Blocktyp:</translation>
+    </message>
+    <message>
+        <source>Expand</source>
+        <translation>Expandera</translation>
+    </message>
+    <message>
+        <source>Collapse</source>
+        <translation>Fäll ihop</translation>
     </message>
 </context>
 <context>
@@ -556,12 +570,16 @@
         <source>Push to block</source>
         <translation>Flytta till block</translation>
     </message>
+    <message>
+        <source>Add to block in frontpage</source>
+        <translation>Lägg till i block på startsidan</translation>
+    </message>
 </context>
 <context>
     <name>kernel/workflow/event</name>
     <message>
         <source>eZ Page swap workflow event</source>
-        <translation type="unfinished">Arbetsflödeshändelse  för eZ-sidomkastning</translation>
+        <translation>Arbetsflödeshändelse för byte av eZ Page</translation>
     </message>
 </context>
 </TS>

@@ -512,6 +512,22 @@
         <source>Collapse All</source>
         <translation>Skupi sve</translation>
     </message>
+    <message>
+        <source>Block name:</source>
+        <translation>Naziv bloka:</translation>
+    </message>
+    <message>
+        <source>Block type:</source>
+        <translation>Vrsta bloka:</translation>
+    </message>
+    <message>
+        <source>Expand</source>
+        <translation>Proširi</translation>
+    </message>
+    <message>
+        <source>Collapse</source>
+        <translation>Sažmi</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/page/push</name>
@@ -553,6 +569,10 @@
     <message>
         <source>Push to block</source>
         <translation>Gurni u blok</translation>
+    </message>
+    <message>
+        <source>Add to block in frontpage</source>
+        <translation>Dodaj u blok na naslovnoj stranici</translation>
     </message>
 </context>
 <context>
