@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Past year</source>
-        <translation>L&apos;anno scorso</translation>
+        <translation>L'anno scorso</translation>
     </message>
     <message>
         <source>Select block</source>
@@ -73,15 +73,15 @@
     </message>
     <message>
         <source>Publish the contents of the draft that is being edited. The draft will become the published version of the object.</source>
-        <translation>Pubblica i contenuti della bozza che stai modificando. La bozza diverrà la versione pubblicata dell&apos;oggetto.</translation>
+        <translation>Pubblica i contenuti della bozza che stai modificando. La bozza diverrà la versione pubblicata dell'oggetto.</translation>
     </message>
     <message>
         <source>Store draft</source>
-        <translation>Registra la bozza</translation>
+        <translation>Salva bozza</translation>
     </message>
     <message>
         <source>Store the contents of the draft that is being edited and continue editing. Use this button to periodically save your work while editing.</source>
-        <translation>Registra i contenuti della bozza che stai modificando e continua con le modifiche. Usa questo pulsante per salvare periodicamente il tuo lavoro mentre modifichi.</translation>
+        <translation>Salva i contenuti della bozza che stai modificando e continua con le modifiche. Usa questo pulsante per salvare periodicamente il tuo lavoro mentre modifichi.</translation>
     </message>
     <message>
         <source>Discard draft</source>
@@ -136,8 +136,8 @@
 <context>
     <name>design/admin/page/push</name>
     <message>
-        <source>Choose placement for &quot;%node_name&quot;</source>
-        <translation>Scegli la collocazione per &quot;%node_name&quot;</translation>
+        <source>Choose placement for "%node_name"</source>
+        <translation>Scegli la collocazione per "%node_name"</translation>
     </message>
     <message>
         <source>Select frontpage</source>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>Store</source>
-        <translation>Registra</translation>
+        <translation>Salva</translation>
     </message>
 </context>
 <context>
@@ -222,7 +222,7 @@
     </message>
     <message>
         <source>Past year</source>
-        <translation>L&apos;anno scorso</translation>
+        <translation>L'anno scorso</translation>
     </message>
     <message>
         <source>Results</source>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>Store draft</source>
-        <translation>Registra la bozza</translation>
+        <translation>Salva bozza</translation>
     </message>
     <message>
         <source>Discard draft</source>
@@ -397,11 +397,11 @@
     </message>
     <message>
         <source>m</source>
-        <translation>m</translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>s</source>
-        <translation>s</translation>
+        <translation>sec</translation>
     </message>
     <message>
         <source>left</source>
@@ -461,7 +461,7 @@
     </message>
     <message>
         <source>Online:</source>
-        <translation>In linea:</translation>
+        <translation>Online dal:</translation>
     </message>
     <message>
         <source>History:</source>
@@ -548,8 +548,8 @@
 <context>
     <name>design/standard/page/push</name>
     <message>
-        <source>Choose placement for &quot;%node_name&quot;</source>
-        <translation>Scegli la collocazione per &quot;%node_name&quot;</translation>
+        <source>Choose placement for "%node_name"</source>
+        <translation>Scegli la collocazione per "%node_name"</translation>
     </message>
     <message>
         <source>Select frontpage</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Store</source>
-        <translation>Registra</translation>
+        <translation>Salva</translation>
     </message>
 </context>
 <context>

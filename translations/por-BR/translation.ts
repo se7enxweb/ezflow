@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>m</source>
-        <translation>m</translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>s</source>
@@ -445,7 +445,7 @@
     </message>
     <message>
         <source>Online:</source>
-        <translation>Online:</translation>
+        <translation>On-line:</translation>
     </message>
     <message>
         <source>History:</source>

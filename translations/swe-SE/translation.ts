@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Section to search</source>
-        <translation>Avdelning att söka i</translation>
+        <translation>Sektion att söka i</translation>
     </message>
     <message>
         <source>Date range</source>
@@ -89,11 +89,11 @@
     </message>
     <message>
         <source>Are you sure you want to discard the draft?</source>
-        <translation>Vill du verkligen kasta utkastet?</translation>
+        <translation>Är du säker på att du vill kasta utkastet?</translation>
     </message>
     <message>
         <source>Discard the draft that is being edited. This will also remove the translations that belong to the draft (if any).</source>
-        <translation>Kasta det aktuella utkastet. Det innebär att även eventuella översättningar som hör till kastas.</translation>
+        <translation>Kasta utkastet som redigeras. Detta tar också bort översättningarna som hör till utkastet (om några).</translation>
     </message>
 </context>
 <context>
@@ -120,8 +120,8 @@
 <context>
     <name>design/admin/page/push</name>
     <message>
-        <source>Choose placement for &quot;%node_name&quot;</source>
-        <translation>Välj plats för &quot;%node_name&quot;</translation>
+        <source>Choose placement for "%node_name"</source>
+        <translation>Välj plats för "%node_name"</translation>
     </message>
     <message>
         <source>Select frontpage</source>
@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>Section to search</source>
-        <translation>Avdelning att söka i</translation>
+        <translation>Sektion att söka i</translation>
     </message>
     <message>
         <source>Date range</source>
@@ -278,11 +278,11 @@
     </message>
     <message>
         <source>Please log in to vote on this poll.</source>
-        <translation>Logga in för att rösta i undersökningen.</translation>
+        <translation>Logga in för att rösta i denna enkät.</translation>
     </message>
     <message>
         <source>You have already voted for this poll.</source>
-        <translation>Du har redan röstat i den här undersökningen.</translation>
+        <translation>Du har redan röstat i den här omröstningen.</translation>
     </message>
     <message>
         <source>Votes</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation>ta bort</translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Are you sure you want to remove this block?</source>
@@ -532,8 +532,8 @@
 <context>
     <name>design/standard/page/push</name>
     <message>
-        <source>Choose placement for &quot;%node_name&quot;</source>
-        <translation>Välj plats för &quot;%node_name&quot;</translation>
+        <source>Choose placement for "%node_name"</source>
+        <translation>Välj plats för "%node_name"</translation>
     </message>
     <message>
         <source>Select frontpage</source>
