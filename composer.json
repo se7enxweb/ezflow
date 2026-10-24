@@ -13,6 +13,9 @@
     "require": {
         "se7enxweb/ezpublish-legacy-installer": "*"
     },
+    "replace": {
+        "se7enxweb/ezflow-ls-extension": "self.version"
+    },
     "suggest": {
         "se7enxweb/ezwt-ls-extension": "~5.3",
         "se7enxweb/ezgmaplocation-ls-extension": "~5.3",
