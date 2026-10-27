@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>Publish the contents of the draft that is being edited. The draft will become the published version of the object.</source>
-        <translation>Публикувайте съдържанието на чернова��а, която се редактира. Черновата ще стане публикуваната версия на обекта.</translation>
+        <translation>Публикувайте съдържанието на черновата, която се редактира. Черновата ще стане публикуваната версия на обекта.</translation>
     </message>
     <message>
         <source>Store draft</source>
