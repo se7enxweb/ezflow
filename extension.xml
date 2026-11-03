@@ -14,7 +14,7 @@
         </requires>
         <extends>
             <extension name="ezwebin" />
-            <extension name="ezwt" />
+            <extension name="expwt" />
         </extends>
     </dependencies>
 
