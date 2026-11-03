@@ -258,6 +258,78 @@
         <source>Skip to main content</source>
         <translation>Bei Hauptinhalt fortfahren</translation>
     </message>
+    <message>
+        <source>Breadcrumb</source>
+        <translation>Brotkrumennavigation</translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation>Copyright</translation>
+    </message>
+    <message>
+        <source>Documentation</source>
+        <translation>Dokumentation</translation>
+    </message>
+    <message>
+        <source>Main</source>
+        <translation>Hauptmenü</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menü</translation>
+    </message>
+    <message>
+        <source>Page tools</source>
+        <translation>Seitenwerkzeuge</translation>
+    </message>
+    <message>
+        <source>Powered by %link</source>
+        <translation>Betrieben mit %link</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Suchen</translation>
+    </message>
+    <message>
+        <source>Search text:</source>
+        <translation>Suchtext:</translation>
+    </message>
+    <message>
+        <source>Sections</source>
+        <translation>Bereiche</translation>
+    </message>
+    <message>
+        <source>Sign in</source>
+        <translation>Anmelden</translation>
+    </message>
+    <message>
+        <source>Sign out</source>
+        <translation>Abmelden</translation>
+    </message>
+    <message>
+        <source>Site map</source>
+        <translation>Sitemap</translation>
+    </message>
+    <message>
+        <source>Tag cloud</source>
+        <translation>Schlagwortwolke</translation>
+    </message>
+    <message>
+        <source>Theme: automatic</source>
+        <translation>Darstellung: automatisch</translation>
+    </message>
+    <message>
+        <source>Theme: dark</source>
+        <translation>Darstellung: dunkel</translation>
+    </message>
+    <message>
+        <source>Theme: light</source>
+        <translation>Darstellung: hell</translation>
+    </message>
+    <message>
+        <source>This site</source>
+        <translation>Diese Website</translation>
+    </message>
 </context>
 <context>
     <name>design/ezflow/parts/website_toolbar</name>
@@ -268,6 +340,10 @@
     <message>
         <source>Timeline</source>
         <translation>Zeitachse</translation>
+    </message>
+    <message>
+        <source>Push to block</source>
+        <translation>In Block einfügen</translation>
     </message>
 </context>
 <context>
@@ -580,6 +656,171 @@
     <message>
         <source>eZ Page swap workflow event</source>
         <translation>eZ-Seitentausch-Workflow-Ereignis</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/block</name>
+    <message>
+        <source>Advertisement</source>
+        <translation>Anzeige</translation>
+    </message>
+    <message>
+        <source>Get started</source>
+        <translation>Jetzt starten</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Weiter</translation>
+    </message>
+    <message>
+        <source>Nothing has been rated yet.</source>
+        <translation>Noch wurde nichts bewertet.</translation>
+    </message>
+    <message>
+        <source>Nothing tagged with these keywords yet.</source>
+        <translation>Noch nichts mit diesen Schlagwörtern.</translation>
+    </message>
+    <message>
+        <source>Online users</source>
+        <translation>Angemeldete Benutzer</translation>
+    </message>
+    <message>
+        <source>Poll</source>
+        <translation>Umfrage</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>Read more</source>
+        <translation>Weiterlesen</translation>
+    </message>
+    <message>
+        <source>Read the documentation</source>
+        <translation>Dokumentation lesen</translation>
+    </message>
+    <message>
+        <source>See the results</source>
+        <translation>Ergebnisse ansehen</translation>
+    </message>
+    <message>
+        <source>View all</source>
+        <translation>Alle anzeigen</translation>
+    </message>
+    <message>
+        <source>signed-in users right now</source>
+        <translation>Benutzer sind gerade angemeldet</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/article</name>
+    <message>
+        <source>%min min read</source>
+        <translation>%min Min. Lesezeit</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>More from this site</source>
+        <translation>Mehr von dieser Website</translation>
+    </message>
+    <message>
+        <source>New comment</source>
+        <translation>Neuer Kommentar</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/poll</name>
+    <message>
+        <source>%count votes in total</source>
+        <translation>%count Stimmen insgesamt</translation>
+    </message>
+    <message>
+        <source>Back to the poll</source>
+        <translation>Zurück zur Umfrage</translation>
+    </message>
+    <message>
+        <source>Votes: %count</source>
+        <translation>Stimmen: %count</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/blog</name>
+    <message>
+        <source>Blog</source>
+        <translation>Blog</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/event</name>
+    <message>
+        <source>All events</source>
+        <translation>Alle Veranstaltungen</translation>
+    </message>
+    <message>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
+        <source>Category</source>
+        <translation>Kategorie</translation>
+    </message>
+    <message>
+        <source>Conferences, workshops, webinars and meetups.</source>
+        <translation>Konferenzen, Workshops, Webinare und Treffen.</translation>
+    </message>
+    <message>
+        <source>Ends</source>
+        <translation>Ende</translation>
+    </message>
+    <message>
+        <source>No upcoming events.</source>
+        <translation>Keine kommenden Veranstaltungen.</translation>
+    </message>
+    <message>
+        <source>Past events</source>
+        <translation>Vergangene Veranstaltungen</translation>
+    </message>
+    <message>
+        <source>Starts</source>
+        <translation>Beginn</translation>
+    </message>
+    <message>
+        <source>Upcoming events</source>
+        <translation>Kommende Veranstaltungen</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/gallery</name>
+    <message>
+        <source>Gallery</source>
+        <translation>Galerie</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezflow/full/feedback_form</name>
+    <message>
+        <source>Get in touch</source>
+        <translation>Kontakt aufnehmen</translation>
+    </message>
+    <message>
+        <source>Looking for answers right away? Read the %link.</source>
+        <translation>Sofort eine Antwort gesucht? Lesen Sie die %link.</translation>
+    </message>
+    <message>
+        <source>Send message</source>
+        <translation>Nachricht senden</translation>
+    </message>
+    <message>
+        <source>We answer every message, usually within two working days.</source>
+        <translation>Wir beantworten jede Nachricht, meist innerhalb von zwei Arbeitstagen.</translation>
+    </message>
+    <message>
+        <source>documentation</source>
+        <translation>Dokumentation</translation>
     </message>
 </context>
 </TS>
