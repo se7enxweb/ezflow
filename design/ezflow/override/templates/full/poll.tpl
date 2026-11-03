@@ -2,7 +2,7 @@
 {def $question_attribute = $node.data_map.question}
 <div class="fx-container fx-article">
     <header class="fx-article__head">
-        <p class="fx-kicker">{'Poll'|i18n( 'design/ezflow/block' )}</p>
+        <p class="fx-kicker">{$node.class_name|wash}</p>
         <h1>{$node.name|wash}</h1>
         {if $node.data_map.description.has_content}<div class="fx-pagehead__lead">{attribute_view_gui attribute=$node.data_map.description}</div>{/if}
     </header>
@@ -19,7 +19,7 @@
         </fieldset>
         <div class="fx-poll__actions">
             <button class="fx-btn" type="submit" name="ActionCollectInformation" value="1">{'Vote'|i18n( 'design/ezflow/embed/poll' )}</button>
-            <a class="fx-link-arrow" href={concat( 'content/collectedinfo/', $node.node_id )|ezurl}>{'See the results'|i18n( 'design/ezflow/block' )}</a>
+            <a class="fx-link-arrow" href={concat( 'content/collectedinfo/', $node.node_id )|ezurl}>{'Poll results'|i18n( 'design/ezflow/block' )}</a>
         </div>
     </form>
     </div>

@@ -5,7 +5,7 @@
 {def $question_attribute = $poll_node.data_map.question}
 <section class="fx-block fx-block--poll" aria-labelledby="fx-b-{$block.id}">
 <div class="fx-poll" data-fx-reveal>
-    <p class="fx-kicker" id="fx-b-{$block.id}">{cond( $block.name|trim, $block.name, 'Poll'|i18n( 'design/ezflow/block' ) )|wash}</p>
+    <p class="fx-kicker" id="fx-b-{$block.id}">{cond( $block.name|trim, $block.name, $poll_node.class_name )|wash}</p>
     <form method="post" action={"content/action"|ezurl}>
         <input type="hidden" name="ContentNodeID" value="{$poll_node.node_id}">
         <input type="hidden" name="ContentObjectID" value="{$poll_node.contentobject_id}">
@@ -18,7 +18,7 @@
         </fieldset>
         <div class="fx-poll__actions">
             <button class="fx-btn" type="submit" name="ActionCollectInformation" value="1">{'Vote'|i18n( 'design/ezflow/embed/poll' )}</button>
-            <a class="fx-link-arrow" href={concat( 'content/collectedinfo/', $poll_node.node_id )|ezurl}>{'See the results'|i18n( 'design/ezflow/block' )}</a>
+            <a class="fx-link-arrow" href={concat( 'content/collectedinfo/', $poll_node.node_id )|ezurl}>{'Poll results'|i18n( 'design/ezflow/block' )}</a>
         </div>
     </form>
 </div>

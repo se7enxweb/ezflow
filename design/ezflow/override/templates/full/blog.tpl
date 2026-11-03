@@ -5,7 +5,7 @@
      $children_count = fetch( 'content', 'list_count', hash( 'parent_node_id', $node.node_id, 'class_filter_type', 'include', 'class_filter_array', array( 'blog_post' ) ) )}
 <div class="fx-container">
     <header class="fx-pagehead">
-        <p class="fx-kicker">{'Blog'|i18n( 'design/ezflow/full/blog' )}</p>
+        <p class="fx-kicker">{$node.class_name|wash}</p>
         <h1>{$node.name|wash}</h1>
         {if $node.data_map.description.has_content}<div class="fx-pagehead__lead">{attribute_view_gui attribute=$node.data_map.description}</div>{/if}
     </header>

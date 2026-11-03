@@ -6,7 +6,6 @@
         <p class="fx-meta">
             {if $node.data_map.author.has_content}<span>{$node.data_map.author.content.author_list[0].name|wash}</span>{/if}
             <time datetime="{$node.object.published|datetime( 'custom', '%Y-%m-%d' )}">{$node.object.published|datetime( 'custom', '%F %j, %Y' )}</time>
-            <span>{'%min min read'|i18n( 'design/ezflow/full/article', , hash( '%min', $node.data_map.body.content.output.output_text|striptags|count_words|div( 220 )|ceil|max( 1 ) ) )}</span>
         </p>
     </header>
     {include uri='design:parts/ezflow/cover.tpl' node=$node}
@@ -17,7 +16,7 @@
             {include uri='design:parts/related_content.tpl'}
             {if $node.data_map.enable_comments.data_int}{include uri='design:parts/ezflow/comments.tpl'}{/if}
         </div>
-        <aside class="fx-article__aside" aria-label="{'More from this site'|i18n( 'design/ezflow/full/article' )}">
+        <aside class="fx-article__aside">
             {include uri='design:parts/extra_info.tpl'}
         </aside>
     </div>

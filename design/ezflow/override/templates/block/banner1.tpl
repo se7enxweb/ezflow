@@ -5,7 +5,6 @@
 <section class="fx-block fx-block--cta">
 <div class="fx-cta" data-fx-reveal>
     <div>
-        <p class="fx-kicker fx-hero__kicker">{'Get started'|i18n( 'design/ezflow/block' )}</p>
         <h2 class="fx-cta__title">{cond( $block.name|trim, $block.name, $valid_node.name )|wash}</h2>
         {if $valid_node}
         <div class="fx-cta__text">{include uri='design:parts/ezflow/teaser_text.tpl' node=$valid_node}</div>
@@ -15,7 +14,7 @@
             {else}
             <a class="fx-btn" href={$valid_node.url_alias|ezurl}>{$valid_node.name|wash}</a>
             {/if}
-            <a class="fx-btn fx-btn--light" href="https://doc.exponential.earth">{'Read the documentation'|i18n( 'design/ezflow/block' )}</a>
+            <a class="fx-btn fx-btn--light" href="https://doc.exponential.earth">{'Documentation'|i18n( 'design/ezflow/pagelayout' )}</a>
         </div>
         {/if}
     </div>

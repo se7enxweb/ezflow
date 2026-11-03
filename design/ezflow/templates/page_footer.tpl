@@ -38,7 +38,7 @@
       {if $pagedesign.data_map.footer_text.has_content}{$pagedesign.data_map.footer_text.content|wash}{/if}
     </address>
     {if $pagedesign.data_map.hide_powered_by.data_int|not}
-    <p>{'Powered by %link'|i18n( 'design/ezflow/pagelayout', , hash( '%link', '<a href="https://exponential.earth">Exponential</a>' ) )}</p>
+    <p>{'Powered by'|i18n( 'design/ezflow/pagelayout' )} <a href="https://exponential.earth">Exponential</a></p>
     {/if}
   </div>
 </footer>

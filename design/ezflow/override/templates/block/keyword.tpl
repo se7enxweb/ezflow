@@ -8,8 +8,6 @@
         <li><a class="fx-list__link" href={$valid_node.url_alias|ezurl}><span class="fx-list__title">{$valid_node.name|wash}</span><span class="fx-list__meta">{$valid_node.class_name|wash}</span></a></li>
     {/foreach}
     </ul>
-    {else}
-    <p class="fx-empty">{'Nothing tagged with these keywords yet.'|i18n( 'design/ezflow/block' )}</p>
     {/if}
 </section>
 {undef $valid_nodes}

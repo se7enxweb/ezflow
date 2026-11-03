@@ -10,8 +10,6 @@
         <li><a class="fx-list__link" href={$top_rated.url_alias|ezurl}><span class="fx-list__title">{$top_rated.name|wash}</span></a></li>
     {/foreach}
     </ol>
-    {else}
-    <p class="fx-empty">{'Nothing has been rated yet.'|i18n( 'design/ezflow/block' )}</p>
     {/if}
 </section>
 {undef $top_rated_array}

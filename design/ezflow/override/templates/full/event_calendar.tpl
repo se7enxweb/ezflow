@@ -8,13 +8,9 @@
     <header class="fx-pagehead">
         <p class="fx-kicker">{'Calendar'|i18n( 'design/ezflow/full/event' )}</p>
         <h1>{$node.name|wash}</h1>
-        <p class="fx-pagehead__lead">{'Conferences, workshops, webinars and meetups.'|i18n( 'design/ezflow/full/event' )}</p>
     </header>
-    <h2 class="fx-sr-only">{'Upcoming events'|i18n( 'design/ezflow/full/event' )}</h2>
     {if $upcoming|count}
     <ul class="fx-events">{foreach $upcoming as $event}{include uri='design:parts/ezflow/event_row.tpl' event=$event}{/foreach}</ul>
-    {else}
-    <p class="fx-empty">{'No upcoming events.'|i18n( 'design/ezflow/full/event' )}</p>
     {/if}
     {if $past|count}
     <h2 class="fx-section">{'Past events'|i18n( 'design/ezflow/full/event' )}</h2>

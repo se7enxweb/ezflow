@@ -16,7 +16,7 @@
             {/if}
             {if $node.data_map.enable_comments.data_int}{include uri='design:parts/ezflow/comments.tpl'}{/if}
         </div>
-        <aside class="fx-article__aside" aria-label="{'More from this site'|i18n( 'design/ezflow/full/article' )}">
+        <aside class="fx-article__aside">
             {include uri='design:parts/extra_info.tpl'}
         </aside>
     </div>

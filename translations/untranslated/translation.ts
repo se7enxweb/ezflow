@@ -279,14 +279,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Page tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Powered by %link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -315,19 +307,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Theme: automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Theme: dark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Theme: light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Powered by</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -641,31 +637,7 @@
 <context>
     <name>design/ezflow/block</name>
     <message>
-        <source>Advertisement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Get started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Nothing has been rated yet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Nothing tagged with these keywords yet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Online users</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -677,34 +649,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Read the documentation</source>
+        <source>Poll results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>See the results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>signed-in users right now</source>
+        <source>Show all</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>design/ezflow/full/article</name>
     <message>
-        <source>%min min read</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>More from this site</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -713,33 +669,7 @@
     </message>
 </context>
 <context>
-    <name>design/ezflow/full/poll</name>
-    <message>
-        <source>%count votes in total</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Back to the poll</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Votes: %count</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/ezflow/full/blog</name>
-    <message>
-        <source>Blog</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>design/ezflow/full/event</name>
-    <message>
-        <source>All events</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Calendar</source>
         <translation type="unfinished"></translation>
@@ -749,57 +679,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Conferences, workshops, webinars and meetups.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No upcoming events.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Past events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Starts</source>
+        <source>From</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Upcoming events</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/ezflow/full/gallery</name>
-    <message>
-        <source>Gallery</source>
+        <source>To</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>design/ezflow/full/feedback_form</name>
     <message>
-        <source>Get in touch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Looking for answers right away? Read the %link.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Send message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>We answer every message, usually within two working days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>documentation</source>
+        <source>Send form</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

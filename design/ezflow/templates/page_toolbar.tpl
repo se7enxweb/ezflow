@@ -8,7 +8,7 @@
     {def $fx_tb_timeline = and( ezini( 'TimelineSettings', 'AvailableForClasses', 'timeline.ini' )|contains( $fx_tb_node.class_identifier ), fetch( 'user', 'has_access_to', hash( 'module', 'ezflow', 'function', 'timeline' ) ) )
          $fx_tb_push     = and( $fx_tb_node.can_edit, fetch( 'user', 'has_access_to', hash( 'module', 'ezflow', 'function', 'edit' ) ) )}
     {if or( $fx_tb_timeline, $fx_tb_push )}
-    <nav class="fx-pagetools" aria-label="{'Page tools'|i18n( 'design/ezflow/pagelayout' )}">
+    <nav class="fx-pagetools" aria-label="ezflow">
         {if $fx_tb_timeline}<a class="fx-btn fx-btn--ghost fx-btn--small" href={concat( '/ezflow/timeline/', $fx_tb_node.node_id )|ezurl}>{'Timeline'|i18n( 'design/ezflow/parts/website_toolbar' )}</a>{/if}
         {if $fx_tb_push}<a class="fx-btn fx-btn--ghost fx-btn--small" href={concat( '/ezflow/push/', $fx_tb_node.node_id )|ezurl}>{'Push to block'|i18n( 'design/ezflow/parts/website_toolbar' )}</a>{/if}
     </nav>

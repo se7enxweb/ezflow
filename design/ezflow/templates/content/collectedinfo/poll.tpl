@@ -23,15 +23,15 @@
             <li class="fx-results__row">
                 <span class="fx-results__label"><span id="fx-opt-{$option.id}">{$option.value|wash}</span><span>{$percentage}%</span></span>
                 <progress class="fx-results__bar" max="100" value="{$percentage}" aria-labelledby="fx-opt-{$option.id}">{$percentage}%</progress>
-                <span class="fx-meta"><span>{'Votes: %count'|i18n( 'design/ezflow/full/poll', , hash( '%count', $item_count ) )}</span></span>
+                <span class="fx-meta"><span>{'Votes'|i18n( 'design/ezwebin/collectedinfo/poll' )}: {$item_count}</span></span>
             </li>
             {undef $item_count $percentage}
         {/foreach}
         </ul>
-        <p class="fx-meta"><span>{'%count votes in total'|i18n( 'design/ezflow/full/poll', , hash( '%count', $total_count ) )}</span></p>
+        <p class="fx-meta"><span>{'%count total votes'|i18n( 'design/standard/content/poll', , hash( '%count', $total_count ) )}</span></p>
         {undef $contentobject_attribute_id $total_count $item_counts}
         {/if}
     {/foreach}
     </div>
-    <p><a class="fx-link-arrow" href={$node.url_alias|ezurl}>{'Back to the poll'|i18n( 'design/ezflow/full/poll' )}</a></p>
+    <p><a class="fx-link-arrow" href={$node.url_alias|ezurl}>{$node.name|wash}</a></p>
 </div>
