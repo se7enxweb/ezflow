@@ -543,6 +543,10 @@
         <source>Publishing schedule for: </source>
         <translation>Veröffentlichungsplan für: </translation>
     </message>
+    <message>
+        <source>Remove source</source>
+        <translation>Quelle entfernen</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/block/view</name>
